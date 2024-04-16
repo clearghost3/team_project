@@ -35,16 +35,24 @@
             align-items: center;
             justify-content: center;
 
-
             margin: 0;
             height: 250px;
 
             background-image: url('h1.png');
             background-position: center;
             background-size: cover;
+        }
 
+        #dark_mode {
+            margin: auto;
+            text-align: right;
+            padding: 5px;
         }
     </style>
+
+    <scipt>
+
+    </scipt>
 
 
 
@@ -54,7 +62,36 @@
     <h1 class="nanum-pen" id="title">팀: 회사 push~</h1>
 
 
-    
+    <div id="dark_mode">
+        <input id="night_day" type="button" value="night" onclick="
+        if (document.querySelector('#night_day').value === 'night')
+        {
+            document.querySelector('body').style.backgroundColor='black';
+            document.querySelector('body').style.color='white';
+
+            var a=document.querySelectorAll('.card');
+            a.forEach(data => {
+                data.style.backgroundColor='black';
+            });
+            
+            this.value='day';
+        }
+        else
+        {
+            document.querySelector('body').style.backgroundColor='white';
+            document.querySelector('body').style.color='black';
+            this.value='night';
+
+            var a=document.querySelectorAll('.card');
+            a.forEach(data => {
+                data.style.backgroundColor='white';
+            });
+        }
+        ">
+    </div>
+
+    <h2>회사 push의 팀원들~</h2>
+
     <div class="card-group">
         <div class="card">
             <a href="자신의 사이트"><img src="sample.jpg" class="card-img-top" alt="..."></a>
@@ -89,7 +126,7 @@
     </div>
     <div class="card-group">
         <div class="card">
-            <a href="자신의 사이트"><img src="sample.jpg" class="card-img-top" alt="..."></a>
+            <a href="yunhyung.html"><img src="sample.jpg" class="card-img-top" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">이윤형</h5>
                 <p class="card-text">본인의 한마디</p>
