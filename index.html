@@ -71,6 +71,7 @@
 
             var a=document.querySelectorAll('.card');
             a.forEach(data => {
+                data.style.Color='white';
                 data.style.backgroundColor='black';
             });
             
@@ -80,12 +81,14 @@
         {
             document.querySelector('body').style.backgroundColor='white';
             document.querySelector('body').style.color='black';
-            this.value='night';
-
+            
             var a=document.querySelectorAll('.card');
             a.forEach(data => {
+                data.style.Color='black';
                 data.style.backgroundColor='white';
             });
+
+            this.value='night';
         }
         ">
     </div>
