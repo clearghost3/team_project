@@ -10,6 +10,37 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+        function nightday_handler() {
+            var a = document.querySelector('body');
+            var b = document.querySelectorAll('.card');
+
+            if (this.value === 'night') {
+                document.querySelector('#night_day').value = 'day';
+                a.style.color = 'white';
+                a.style.backgroundColor = 'black';
+
+                b.forEach(data => {
+                    data.style.Color = 'white';
+                    data.style.backgroundColor = 'black';
+                });
+
+                this.value = 'day';
+            } else {
+                document.querySelector('#night_day').value = 'night';
+                a.style.color = 'black';
+                a.style.backgroundColor = 'white';
+
+                b.forEach(data => {
+                    data.style.Color = 'black';
+                    data.style.backgroundColor = 'white';
+                });
+
+                this.value = 'night';
+            }
+        }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 
@@ -18,7 +49,9 @@
             font-weight: 400;
             font-style: normal;
         }
+    </style>
 
+    <style>
         h1 {
             font-size: 80px;
             color: powderblue;
@@ -43,17 +76,7 @@
             background-size: cover;
         }
 
-        #dark_mode {
-            margin: auto;
-            text-align: right;
-            padding: 5px;
-        }
     </style>
-
-    <scipt>
-
-    </scipt>
-
 
 
 </head>
@@ -62,38 +85,9 @@
     <h1 class="nanum-pen" id="title">팀: 회사 push~</h1>
 
 
-    <div id="dark_mode">
-        <input id="night_day" type="button" value="night" onclick="
-        if (document.querySelector('#night_day').value === 'night')
-        {
-            document.querySelector('body').style.backgroundColor='black';
-            document.querySelector('body').style.color='white';
-
-            var a=document.querySelectorAll('.card');
-            
-            a.forEach(data => {
-                data.style.Color='white';
-                data.style.backgroundColor='black';
-            });
-            
-            this.value='day';
-        }
-        else
-        {
-            document.querySelector('body').style.backgroundColor='white';
-            document.querySelector('body').style.color='black';
-            
-            var a=document.querySelectorAll('.card');
-
-            a.forEach(data => {
-                data.style.Color='black';
-                data.style.backgroundColor='white';
-            });
-
-            this.value='night';
-        }
-        ">
-    </div>
+    <input id="night_day" type="button" value="night" onclick="
+    nightday_handler();
+    ">
 
     <h2>회사 push의 팀원들~</h2>
 
@@ -131,7 +125,7 @@
     </div>
     <div class="card-group">
         <div class="card">
-            <a href="yunhyung.html"><img src="sample.jpg" class="card-img-top" alt="..."></a>
+            <a href="yun_mbti.html"><img src="sample.jpg" class="card-img-top" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">이윤형</h5>
                 <p class="card-text">본인의 한마디</p>
@@ -141,10 +135,10 @@
             </div>
         </div>
         <div class="card">
-            <a href="자신의 사이트"><img src="sample.jpg" class="card-img-top" alt="..."></a>
+            <a href="https://nohsiheon.github.io/introduce/" target="_blank"><img src="https://i.namu.wiki/i/AM26PqNQV9Rpvo4JvZTKSj7eHbZIiOdU7QLuZbAQB2rjIS_5YLEa3o_5oOaUvnK_-KiXqS0GS_evDEnCm1I1dQ.gif" class="card-img-top" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">오시헌</h5>
-                <p class="card-text">본인의 한마디</p>
+                <h5 class="card-title">노시헌</h5>
+                <p class="card-text">화이팅</p>
             </div>
             <div class="card-footer">
                 <small class="text-body-secondary">Last updated 3 mins ago</small>
