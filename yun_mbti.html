@@ -19,9 +19,70 @@
         }
     </style>
 
+    <script>
+        function nightday_handler() {
+            var body = document.querySelector('body');
+
+            var card_array = document.querySelectorAll('.card');
+            var a_array = document.querySelectorAll('a')
+
+            if (this.value === 'night') {
+                document.querySelector('#night_day').value = 'day';
+                body.style.color = 'white';
+                body.style.backgroundColor = 'black';
+
+                card_array.forEach(data => {
+                    data.style.color = 'white';
+                    data.style.backgroundColor = 'black';
+                });
+                a_array.forEach(data => {
+                    data.style.color = 'white';
+                });
+
+                this.value = 'day';
+            } else {
+                document.querySelector('#night_day').value = 'night';
+                body.style.color = 'black';
+                body.style.backgroundColor = 'white';
+
+                card_array.forEach(data => {
+                    data.style.color = 'black';
+                    data.style.backgroundColor = 'white';
+                });
+                a_array.forEach(data => {
+                    data.style.color = 'black';
+                });
+
+                this.value = 'night';
+            }
+        }
+    </script>
+
     <style>
+        @media (max-width:1390px) {
+            #top {
+                display: none;
+            }
+        }
+        @media (max-width:1300px) {
+            #under {
+                display: none;
+            }
+        }
+        @media (max-width:800px) {
+            #pic {
+                display: none;
+            }
+        }
+
         h1 {
             font-size: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        p {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -32,6 +93,11 @@
             text-decoration: none;
             color: black;
         }
+
+        li {
+            padding: 7px;
+        }
+
 
         #title {
             display: flex;
@@ -60,64 +126,92 @@
         }
 
         #night_day {
-            margin-left: auto;
+            border: solid grey 3px;
+            text-align: left;
+        }
+
+
+
+        #grid {
+            border: 5px solid pink;
+            display: grid;
+            grid-template-columns: 180px 1fr 1fr;
+        }
+
+        #index {
+
+            border-right: solid grey 3px;
+        }
+
+        #content {
+            padding-left: 15px;
+            margin: 0px;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        #pic {
+            border-right: solid 3px grey;
+            width: 600px;
+            height: 700px;
+            margin:0px;
+
+            background-image: url(mbti_content.jpg);
+            background-position: center;
+            background-size: cover;
         }
     </style>
 
-    <script>
-        function nightday_handler() {
-            var a = document.querySelector('body');
-            var b = document.querySelectorAll('.card');
-
-            if (this.value === 'night') {
-                document.querySelector('#night_day').value = 'day';
-                a.style.color = 'white';
-                a.style.backgroundColor = 'black';
-
-                b.forEach(data => {
-                    data.style.Color = 'white';
-                    data.style.backgroundColor = 'black';
-                });
-
-                this.value = 'day';
-            } else {
-                document.querySelector('#night_day').value = 'night';
-                a.style.color = 'black';
-                a.style.backgroundColor = 'white';
-
-                b.forEach(data => {
-                    data.style.Color = 'black';
-                    data.style.backgroundColor = 'white';
-                });
-
-                this.value = 'night';
-            }
-        }
-    </script>
 
 
 </head>
 
 <body>
     <h1 id="title"><a class="poorstory" href="index.html" style="color:white">이윤형의 사이트</a></h1>
-    <input id="night_day" style="margin-left: auto;" type="button" value="night" onclick="
+    <input id="night_day" type="button" value="night" onclick="
     nightday_handler()
     ">
+    <div id="grid">
+        <div id="index">
+            <h2>INDEX</h2>
+            <ol>
+                <a href="yun_mbti.html">
+                    <li>mbti</li>
+                </a>
+                <a href="yun_advantage.html">
+                    <li> 나의 장점</li>
+                </a>
+                <a href="yun_collaboration.html">
+                    <li> 나의 협업 스타일</li>
+                </a>
+                <a href="yun_TIL.html">
+                    <li>TIL</li>
+                </a>
+            </ol>
+        </div>
 
-    <ol>
-        <a href="low.html">
-            <li>mbti</li>
-        </a>
-        <a href="low.html">
-            <li> 나의 장점</li>
-        </a>
-        <a href="low.html">
-            <li> 나의 협업 스타일</li>
-        </a>
-        <a href="yun_TIL.html">
-            <li>TIL</li>
-        </a>
-    </ol>
+        <div id="pic">
+        </div>
+
+            <div id="content">
+                <p id="top" style="font-size: 25px;">
+                    논리술사는 상상력과 호기심이 넘치는 성격으로,<br> 자신의 아이디어에 대해 끊임없이 생각하곤 합니다.
+                </p>
+
+                <p id="under" style="border-top:solid 3px grey;">
+                    <spen style="font-size: 25px;">&lt;소개&gt;</spen>
+                    저는 intp입니다.<br>
+                    무언가를 만들기를 좋아하고 논리적인 걸 좋아하는 성격이죠.<br>
+                    그래서 효율적인 것을 선호하고, 잘 짜여진 무언가를 보면 행복합니다.<br>
+                    떼때로 타인과 소통하는 방법이 다를 수 있습니다.<br>
+                    그렇기 때문에 힘들때도 많지만, 즐겁기도 하죠<br>
+                </p>
+
+            </div>
+
+
+    </div>
+
 
 
 
