@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poor+Story&display=swap');
+
+        .poorstory {
+            font-family: "Poor Story", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+
+    <script>
+        function nightday_handler() {
+            var body = document.querySelector('body');
+
+            var card_array = document.querySelectorAll('.card');
+            var a_array = document.querySelectorAll('a')
+
+            if (this.value === 'night') {
+                document.querySelector('#night_day').value = 'day';
+                body.style.color = 'white';
+                body.style.backgroundColor = 'black';
+
+                card_array.forEach(data => {
+                    data.style.color = 'white';
+                    data.style.backgroundColor = 'black';
+                });
+                a_array.forEach(data => {
+                    data.style.color = 'white';
+                });
+
+                this.value = 'day';
+            } else {
+                document.querySelector('#night_day').value = 'night';
+                body.style.color = 'black';
+                body.style.backgroundColor = 'white';
+
+                card_array.forEach(data => {
+                    data.style.color = 'black';
+                    data.style.backgroundColor = 'white';
+                });
+                a_array.forEach(data => {
+                    data.style.color = 'black';
+                });
+
+                this.value = 'night';
+            }
+        }
+    </script>
+
+    <style>
+        @media (max-width:1390px) {
+            #top {
+                display: none;
+            }
+        }
+        @media (max-width:1300px) {
+            #under {
+                display: none;
+            }
+        }
+        @media (max-width:800px) {
+            #pic {
+                display: none;
+            }
+        }
+
+        h1 {
+            font-size: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        p {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        li {
+            padding: 7px;
+        }
+
+
+        #title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0;
+            height: 250px;
+
+            background-image: url('yun_h1.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .text_block {
+            width: 600px;
+            padding: 15px;
+            margin: auto auto;
+        }
+
+        #recordboard {
+            background-image: url('energy.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        #night_day {
+            border: solid grey 3px;
+            text-align: left;
+        }
+
+
+
+        #grid {
+            border: 5px solid pink;
+            display: grid;
+            grid-template-columns: 180px 1fr 1fr;
+        }
+
+        #index {
+
+            border-right: solid grey 3px;
+        }
+
+        #content {
+            padding-left: 15px;
+            margin: 0px;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        #pic {
+            border-right: solid 3px grey;
+            width: 600px;
+            height: 700px;
+            margin:0px;
+
+            background-image: url(collaboration_content.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <h1 id="title"><a class="poorstory" href="index.html" style="color:white">이윤형의 사이트</a></h1>
+    <input id="night_day" type="button" value="night" onclick="
+    nightday_handler()
+    ">
+    <div id="grid">
+        <div id="index">
+            <h2>INDEX</h2>
+            <ol>
+                <a href="yun_mbti.html">
+                    <li>mbti</li>
+                </a>
+                <a href="yun_advantage.html">
+                    <li> 나의 장점</li>
+                </a>
+                <a href="yun_collaboration.html">
+                    <li> 나의 협업 스타일</li>
+                </a>
+                <a href="yun_TIL.html">
+                    <li>TIL</li>
+                </a>
+            </ol>
+        </div>
+
+        <div id="pic">
+        </div>
+
+            <div id="content">
+                <p id="top" style="font-size: 25px;">
+                    혼자 할 수 있는 일은 거의 없다.<br> 우리는 함께 많은 것을 할 수 있다.<br>
+                    -Helen Keller
+                </p>
+
+                <p id="under" style="border-top:solid 3px grey;">
+                    <spen style="font-size: 25px;">&lt;소개&gt;</spen>
+                    저는 기본적으로 소통을 좋아하고 1보다는 2가 2보다는 3이 낫다고 믿습니다.<br>
+                    독단적으로 무언가를 결정하기 보다는 항상 모두의 의견을 경청하면서<br>
+                    더 나은 방법을 찾기 위해서 노력합니다.<br>
+                    
+                    따라서 제 스타일은 주로 타인의 의견을 경청하며 수용하는 형태로<br>
+                    진행될 때가 많습니다.<br>
+                    제 스타일은 때때로 느린 진행속도를 민들때도 있지만,<br>
+                    대부분 더 나은 결과를 보여줍니디<br>
+                </p>
+
+            </div>
+
+
+    </div>
+
+
+
+
+
+</body>
