@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jini's Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -65,8 +66,6 @@
             background-position: center;
             background-size: cover;
         }
-
-        
     </style>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
@@ -91,6 +90,52 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        // 단점 저장
+        $("#danbtn").click(async function () {
+            let jinidan = $('#jinidan').val();
+
+            let doc = {
+                'jinidan': jinidan
+            };
+            await addDoc(collection(db, "ddd"), doc);
+            alert('추가 완료!');
+            window.location.reload();
+        })
+
+        let docs = await getDocs(collection(db, "ddd"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let jinidan = row['jinidan'];
+
+            let temp_html = `
+            <li>${jinidan}</li>`;
+            $('#dan').append(temp_html);
+        });
+
+        // 장점 저장
+        $("#jangbtn").click(async function () {
+            let jinijang = $('#jinijang').val();
+
+            let doc = {
+                'jinijang': jinijang
+            };
+            await addDoc(collection(db, "jjj"), doc);
+            alert('추가 완료!');
+            window.location.reload();
+        })
+
+        let docsd = await getDocs(collection(db, "jjj"));
+        docsd.forEach((doc) => {
+            let row = doc.data();
+
+            let jinijang = row['jinijang'];
+
+            let temp_html = `
+            <li>${jinijang}</li>`;
+            $('#jang').append(temp_html);
+        });
 
 
 
@@ -127,37 +172,97 @@
                         class="rounded mx-auto d-block" alt="...">
                 </div>
                 <h3 class="fs-2 text-body-emphasis">MBTI : ISTP</h3>
-                <p class="text">장인(ISTP)은 이성과 호기심을 통해 세상을 바라보며 눈과 손으로 직접 탐구하는 일을 즐깁니다. 이들은 타고난 손기술을 지니고 있으며, 다양한 프로젝트에서 유용하고 재미있는
+                <p class="text">장인(ISTP)은 이성과 호기심을 통해 세상을 바라보며 눈과 손으로 직접 탐구하는 일을 즐깁니다. 이들은 타고난 손기술을 지니고 있으며, 다양한 프로젝트에서
+                    유용하고 재미있는
                     물건을 만들어 내고 주변 환경에서 배울 점을 찾습니다. 장인은 보통 기술자나 엔지니어로 일하는 경우가 많으며 물건을 직접 분해하고 조립해 개선하는 일을 즐깁니다.</p>
-                
+
             </div>
             <div class="feature col">
                 <div class="img">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2827/2827014.png"
-                        class="rounded mx-auto d-block" alt="..." height="250px" width="250px">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2827/2827014.png" class="rounded mx-auto d-block"
+                        alt="..." height="250px" width="250px">
                 </div>
                 <h3 class="fs-2 text-body-emphasis">장점</h3>
-                <li>관찰력이 좋음</li>
-                <li>쉽게 포기하지 않고 끝까지 해냄</li>
-                <li>합리적인 사고가 가능함</li>
+                <div id="jang">
+                    <li>관찰력이 좋음</li>
+                    <li>쉽게 포기하지 않고 끝까지 해냄</li>
+                    <li>합리적인 사고가 가능함</li>
+                </div>
                 <p></p>
-                <a href="yun_mbti.html" target="_self">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     추가
-                </a>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">장점</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="jinijang" placeholder="추가하세요">
+                                    <label for="floatingInput">추가하세요</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                <button id="jangbtn" type="button" class="btn btn-primary">추가하기</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="feature col">
                 <div class="img">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4196/4196092.png"
-                        class="rounded mx-auto d-block" alt="..." height="250px" width="250px">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4196/4196092.png" class="rounded mx-auto d-block"
+                        alt="..." height="250px" width="250px">
                 </div>
                 <h3 class="fs-2 text-body-emphasis">단점</h3>
-                <li>관찰력이 좋음</li>
-                <li>쉽게 포기하지 않고 끝까지 해냄</li>
-                <li>합리적인 사고가 가능함</li>
+                <div id="dan">
+                    <li>배우는 것이 느린 편임</li>
+                    <li>상상력이 부족함</li>
+                    <li>말수가 없음</li>
+                </div>
                 <p></p>
-                <a href="yun_mbti.html" target="_self">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     추가
-                </a>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">단점</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="jinidan" placeholder="추가하세요">
+                                    <label for="floatingInput">추가하세요</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                <button id="danbtn" type="button" class="btn btn-primary">추가하기</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -167,7 +272,9 @@
         <p><a href="https://blog.naver.com/1076uu" class="text-dark">BLog</a>, and <a
                 href="https://github.com/shinleejini" class="text-dark">Github</a>.</p>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
 </body>
 
