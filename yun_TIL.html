@@ -7,7 +7,87 @@
 
     <title>T . I . L</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAvenNdim7iuySjib57L5kDD5uNvFMv5_s",
+            authDomain: "sparta-6176a.firebaseapp.com",
+            projectId: "sparta-6176a",
+            storageBucket: "sparta-6176a.appspot.com",
+            messagingSenderId: "53052140407",
+            appId: "1:53052140407:web:8d24eeb86b0c8178aa4f72",
+            measurementId: "G-453M88R7J7"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        $("#postingbtn").click(async function () {
+            let image = $('#image').val();
+            let name = $('#name').val();
+            let comments = $('#comments').val();
+            let date = $('#date').val();
+
+            let doc = {
+                'image': image,
+                'name': name,
+                'comments': comments,
+                'date': date
+            };
+            await addDoc(collection(db, "TIL"), doc);
+            alert('저장 완료');
+            window.location.reload();
+        })
+
+
+        let docs = await getDocs(collection(db,"TIL"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let image=row['image'];
+            let name=row['name'];
+            let comments=row['comments'];
+            let date=row['date'];
+            
+            let temp_html=`<div class="col">
+                <div class="card h-100">
+                    <img src="${image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${comments}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">${date}</small>
+                    </div>
+                </div>
+            </div>`
+
+            $('#card').append(temp_html);
+        });
+
+
+
+
+
+
+        $("#togglebtn").click(async function () {
+            $('#postingbox').toggle();
+        })
+        
+
+
         function nightday_handler() {
             var body = document.querySelector('body');
 
@@ -44,9 +124,8 @@
                 this.value = 'night';
             }
         }
-        function openclose() {
-            $('#postingbox').toggle();
-        }
+        
+
 
         function cardmaker() {
             let image = $('#image').val();
@@ -143,7 +222,7 @@
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">TIL</h1>
                 <p class="col-md-8 fs-4">앞으로의 방향성을 위해서 오늘의 개인적인 성과를 기록합니다</p>
-                <button type="button" class="btn btn-dark" onclick="openclose()">기록하기</button>
+                <button id="togglebtn" type="button" class="btn btn-dark">기록하기</button>
                 <button type="button" class="btn btn-light">Dark</button>
             </div>
         </div>
@@ -167,7 +246,7 @@
             <textarea class="form-control" placeholder="Leave a comment here" id="date"></textarea>
             <label for="floatingTextarea">TIL 날짜</label>
         </div>
-        <button type="button" class="btn btn-danger" onclick="cardmaker()">기록하기</button>
+        <button id="postingbtn" type="button" class="btn btn-danger">기록하기</button>
 
     </div>
 
@@ -177,10 +256,18 @@
         <div id="card" class="row row-cols-1 row-cols-md-3 g-4">
 
         </div>
-
     </div>
 
 
+
+
+    <script>
+        var i = 0;
+        while (i < 50) {
+            document.write('<br>');
+            i++;
+        }
+    </script>
 </body>
 
 </html>
